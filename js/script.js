@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 // const timerId = setTimeout(() => {
 //     console.log('Hello it is timeout');   
@@ -74,25 +74,88 @@
 // }, 5000); // it will first ime give text in 5 sec than every 1 sec
 
 //todo let's make an animation 
-const btn = document.querySelector('.btn');
-let timerId6,
-    i = 0;
+// const btn = document.querySelector('.btn');
+// let timerId6,
+//     i = 0;
 
-function myAnimation() {
-    const elem = document.querySelector('.box');
-    let pos = 0;
+// function myAnimation() {
+//     const elem = document.querySelector('.box');
+//     let pos = 0;
 
-    const id = setInterval(frame, 10);
+//     const id = setInterval(frame, 10);
 
-    function frame() {
-        if (pos == 300) {
-            clearInterval(id);
-        } else {
-            pos ++;
-            elem.style.top = pos + "px";
-            elem.style.left = pos + 'px';
-        }
-    }
-}
+//     function frame() {
+//         if (pos == 300) {
+//             clearInterval(id);
+//         } else {
+//             pos ++;
+//             elem.style.top = pos + "px";
+//             elem.style.left = pos + 'px';
+//         }
+//     }
+// }
 
-btn.addEventListener('click', myAnimation);
+// btn.addEventListener('click', myAnimation);
+
+
+//! lesson 65 Garbage Collection, (GC) and memory loss
+
+//todo memory loss bcs GC can't delete this variable bcs it is global
+// function func() {
+//     smth = 'some string'; // it is like window.smith = "string" - it is global can't del
+// }
+
+
+//todo memory loss bcs GC can't delete this variable bcs it is on setInterval
+// const someResource = getData();
+// const node = document.querySelector('.class');
+
+// setInterval(function() {
+//     if (node) {
+//         node.innerHTML = someResource;
+//     }
+// }, 5000); // so here it will repeat every 5 sec and  that's why there should be breaks
+
+
+//todo memory loss bcs GC can't delete this variable bcs it is Closure in function
+// function outer() {
+//     const potentiallyHugeArray = [];
+//     return function inner() {
+//         potentiallyHugeArray.push('Some data');
+//         console.log('Data!');
+//     }
+// }
+
+// const showData = outer();
+
+
+//todo memory loss bcs GC can't delete this variable bcs it is part of DOM element
+// function elementCreat() {
+//     const div = document.createElement('div');
+//     div.id = 'test';
+//     return div;
+// }
+
+// const testDiv = elementCreat();
+
+// document.body.append(testDiv);
+
+// //when we delete created element from DOM tree 
+// function deleteElement() {
+//     document.body.removeChild(document.getElementById('test'));
+// }
+// deleteElement();
+
+//todo prevouse memory lose we can avoid as following method:
+// function elementCreat() {
+//     const div = document.createElement('div');
+//     div.id = 'test';
+//     document.body.append(testDiv);
+// }
+// elementCreat();
+
+// //when we delete created element from DOM tree 
+// function deleteElement() {
+//     document.body.removeChild(document.getElementById('test'));
+// }
+// deleteElement();
